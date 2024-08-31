@@ -23,6 +23,7 @@ server.on('message', (msg, rinfo) => {
             if (record) {
                 const result = record.Record.find(record => record.Subdomain === subdomain);
                 if (result && Object.keys(result).length > 0) {
+                    console.log(result,"result found")
                     const answer = dnsPacket.encode({
                         type: 'response',
                         id: incomingMessage.id,
@@ -31,7 +32,7 @@ server.on('message', (msg, rinfo) => {
                         answers: [{
                             type: result.Type,
                             class: incomingMessage?.questions[0]?.class,
-                            name: domain,
+                            name: subdomain,
                             data: result.Value
                         }]
                     });
