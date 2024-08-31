@@ -24,6 +24,7 @@ server.on('message', (msg, rinfo) => {
                 console.log(record,"record found");
                 const result = record.Record.find(record => record.Subdomain === subdomain);
                 if (result && Object.keys(result).length > 0) {
+                    console.log(result,"result found")
                     const answer = dnsPacket.encode({
                         type: 'response',
                         id: incomingMessage.id,
