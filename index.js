@@ -7,6 +7,7 @@ const Record = require("./model/model.js")
 mongodbConnect();
 
 server.on('error', (err) => {
+    console.log("Hello Anuj server")
     console.error(`server error:\n${err.stack}`);
     server.close();
 });
