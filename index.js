@@ -31,7 +31,7 @@ server.on('message', (msg, rinfo) => {
                         flags: dnsPacket.AUTHORITATIVE_ANSWER,
                         questions: incomingMessage.questions,
                         answers: [{
-                            type: result.type,
+                            type: result.Type,
                             class: incomingMessage?.questions[0]?.class,
                             name: subdomain,
                             data: result.Value
