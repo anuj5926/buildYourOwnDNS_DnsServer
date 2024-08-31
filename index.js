@@ -21,6 +21,7 @@ server.on('message', (msg, rinfo) => {
     Record.findOne({ domain: domain })
         .then(record => {
             if (record) {
+                console.log(record,"record found");
                 const result = record.Record.find(record => record.Subdomain === subdomain);
                 if (result && Object.keys(result).length > 0) {
                     const answer = dnsPacket.encode({
@@ -29,9 +30,9 @@ server.on('message', (msg, rinfo) => {
                         flags: dnsPacket.AUTHORITATIVE_ANSWER,
                         questions: incomingMessage.questions,
                         answers: [{
-                            type: result.Type,
+                            type: result.type,
                             class: incomingMessage?.questions[0]?.class,
-                            name: domain,
+                            name: subdomain,
                             data: result.Value
                         }]
                     });
